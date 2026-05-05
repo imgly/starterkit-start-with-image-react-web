@@ -12,7 +12,7 @@ import classes from './ImageSelector.module.css';
 
 interface ImageSelectorProps {
   images: ImageAsset[];
-  selectedImage: ImageAsset;
+  selectedImage: ImageAsset | null;
   onSelect: (image: ImageAsset) => void;
 }
 
@@ -29,7 +29,7 @@ export function ImageSelector({
           <button
             key={image.full}
             className={classNames(classes.imageButton, {
-              [classes.active]: image.full === selectedImage.full
+              [classes.active]: image.full === selectedImage?.full
             })}
             onClick={() => onSelect(image)}
           >
