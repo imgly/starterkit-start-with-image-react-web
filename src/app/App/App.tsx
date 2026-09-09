@@ -5,7 +5,7 @@
  * Uses key-based re-creation to switch between images.
  */
 
-import { useCallback, useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { CreativeEditor } from '@cesdk/cesdk-js/react';
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import type { Configuration } from '@cesdk/cesdk-js';
@@ -16,18 +16,21 @@ import { ImageSelector } from '../ImageSelector/ImageSelector';
 
 import classes from './App.module.css';
 
+
 interface AppProps {
   editorConfig: Configuration;
 }
 
 export function App({ editorConfig }: AppProps) {
   const [selectedImage, setSelectedImage] = useState<ImageAsset | null>(null);
+
   const [editorKey, setEditorKey] = useState(0);
 
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
       // Debug access (remove in production)
       (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
+
 
       if (selectedImage == null) return;
 
