@@ -28,8 +28,6 @@ export function App({ editorConfig }: AppProps) {
 
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      // Debug access (remove in production)
-      (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
 
 
       if (selectedImage == null) return;
